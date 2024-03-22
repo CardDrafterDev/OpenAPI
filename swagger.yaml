@@ -3,15 +3,16 @@ info:
   title: FastAPI
   version: 0.1.0
 paths:
-  /inventory/get/{user_id}:
+  /inventory/get:
     get:
       summary: Get User Inventory
-      operationId: get_user_inventory_inventory_get__user_id__get
+      operationId: get_user_inventory_inventory_get_get
       parameters:
         - name: user_id
-          in: path
+          in: query
           required: true
           schema:
+            type: integer
             title: User Id
       responses:
         '200':
@@ -25,15 +26,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /collection/get/{user_id}:
+  /collection/get:
     get:
       summary: Get Collection By Id
-      operationId: get_collection_by_id_collection_get__user_id__get
+      operationId: get_collection_by_id_collection_get_get
       parameters:
         - name: user_id
-          in: path
+          in: query
           required: true
           schema:
+            type: integer
             title: User Id
       responses:
         '200':
