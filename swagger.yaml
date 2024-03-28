@@ -19,7 +19,11 @@ paths:
           description: Successful Response
           content:
             application/json:
-              schema: {}
+              schema:
+                type: array
+                items:
+                  type: integer
+                title: Response Get User Inventory Inventory Get Get
         '422':
           description: Validation Error
           content:
@@ -42,7 +46,11 @@ paths:
           description: Successful Response
           content:
             application/json:
-              schema: {}
+              schema:
+                type: array
+                items:
+                  type: integer
+                title: Response Get Collection By Id Collection Get Get
         '422':
           description: Validation Error
           content:
