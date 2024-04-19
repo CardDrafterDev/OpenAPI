@@ -3,10 +3,10 @@ info:
   title: FastAPI
   version: 0.1.0
 paths:
-  /inventory/get:
-    get:
-      summary: Get User Inventory
-      operationId: get_user_inventory_inventory_get_get
+  /create_user:
+    post:
+      summary: Create User
+      operationId: create_user_create_user_post
       parameters:
         - name: user_id
           in: query
@@ -19,21 +19,17 @@ paths:
           description: Successful Response
           content:
             application/json:
-              schema:
-                type: array
-                items:
-                  type: integer
-                title: Response Get User Inventory Inventory Get Get
+              schema: {}
         '422':
           description: Validation Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /collection/get:
+  /get_user_data:
     get:
-      summary: Get Collection By Id
-      operationId: get_collection_by_id_collection_get_get
+      summary: Get User
+      operationId: get_user_get_user_data_get
       parameters:
         - name: user_id
           in: query
@@ -47,10 +43,59 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: integer
-                title: Response Get Collection By Id Collection Get Get
+                type: object
+                additionalProperties:
+                  anyOf:
+                    - type: array
+                      items:
+                        type: string
+                    - type: integer
+                      nullable: true
+                title: Response Get User Get User Data Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /update_collection:
+    put:
+      summary: Update User Collection
+      operationId: update_user_collection_update_collection_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /update_inventory:
+    put:
+      summary: Update User Inventory
+      operationId: update_user_inventory_update_inventory_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
         '422':
           description: Validation Error
           content:
@@ -68,6 +113,29 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    User:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        collection:
+          anyOf:
+            - items:
+                type: string
+              type: array
+              nullable: true
+          title: Collection
+        inventory:
+          anyOf:
+            - items:
+                type: string
+              type: array
+              nullable: true
+          title: Inventory
+      type: object
+      required:
+        - user_id
+      title: User
     ValidationError:
       properties:
         loc:
