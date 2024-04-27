@@ -58,6 +58,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+  /get_all_users:
+    get:
+      summary: Select All
+      operationId: select_all_get_all_users_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
   /update_collection:
     put:
       summary: Update User Collection
